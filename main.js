@@ -49,20 +49,20 @@ async function petsArea() {   // یک تابع ناهمزمان (async) می‌�
     const clone = template.content.cloneNode(true);
     // توضیح: cloneNode(true) یک نسخه عمیق (Deep clone) از تمپلیت می‌سازد.
     // تمام عناصر داخل تمپلیت در clone کپی می‌شوند.
-    clone.querySelector("h3").textContent = pet.name;
+    clone.querySelector("h3").textContent = pet.name
+    clone.querySelector(".pet-description").textContent = pet.description
     clone.querySelector(".pet-age").textContent = creatAgeText(pet.birthdayYear);
-    // توضیح: متن placeholder سن حیوان با مقدار واقعی جایگزین می‌شود
-    clone.querySelector(".pet-description").textContent = pet.description;
+    if (!pet.photo) pet.photo = "images/purrsloud 1.jpg"
     clone.querySelector(".pet-card-photo img").src = pet.photo
     clone.querySelector(".pet-card-photo img").alt = `A ${pet.species} named ${pet.name}`
-    wrapper.appendChild(clone);
+    wrapper.appendChild(clone)
     // . اضافه کردن کلون به DocumentFragment
     console.log(pet.name)
     // نام هر حیوان را در کنسول چاپ می‌کنیم
 
 
   })
-  document.querySelector('.list-of-pets').appendChild(wrapper);
+  document.querySelector('.list-of-pets').appendChild(wrapper)
   // . اضافه کردن همه کارت‌ها به صفحه در یک عملیات
 } // پایان تابع petsArea
 
@@ -77,4 +77,15 @@ function creatAgeText(birthYear) {
   if (age == 0) return "less than a year old"
   return `${age} years old`
 }
-
+//pet filter button code
+const allButtons = document.querySelectorAll(".pet-filter button")
+allButtons.forEach(el => {
+  el.addEventListener("click", handleButtonClick)
+})
+function handleButtonClick(e) {
+  //remove active class from any and buttons
+  allButtons.forEach(el => el.classList.remove("active"))
+  //add active class to the specific button  that just got clicked
+  e.target.classList.add("active")
+  //actually filter the pets down below
+}

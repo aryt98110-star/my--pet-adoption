@@ -160,7 +160,7 @@ body {
 }
 
 .pet-filter {
-    color: #FFF;
+    color: #757272;
     font-size: 1.15rem;
 }
 
@@ -169,7 +169,18 @@ body {
     border: none;
     font-family: 'Source Suns 3', sans-serif;
     font-size: 1.15rem;
-    color: #FFF;
+    color: #757272;
+    cursor: pointer;
+}
+
+.pet-filter button:hover {
+    color: #7d7d7d;
+}
+
+.pet-filter .active,
+.pet-filter .active:hover {
+    color: #475AFF;
+    text-decoration: underline;
 }
 
 .site-footer p {
