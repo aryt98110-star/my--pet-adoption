@@ -49,16 +49,12 @@ async function petsArea() {   // یک تابع ناهمزمان (async) می‌�
     const clone = template.content.cloneNode(true);
     // توضیح: cloneNode(true) یک نسخه عمیق (Deep clone) از تمپلیت می‌سازد.
     // تمام عناصر داخل تمپلیت در clone کپی می‌شوند.
-    clone.querySelector('h3').textContent = pet.name;
-    // توضیح: داخل clone، اولین عنصر <h3> را پیدا کرده و اسم حیوان را قرار می‌دهد.
-    clone.querySelector('.pet-species').textContent = pet.species;
-    // توضیح: متن placeholder گونه حیوان با مقدار واقعی جایگزین می‌شود
-    clone.querySelector('.pet-age').textContent = pet.age;
+    clone.querySelector("h3").textContent = pet.name;
+    clone.querySelector(".pet-age").textContent = creatAgeText(pet.birthdayYear);
     // توضیح: متن placeholder سن حیوان با مقدار واقعی جایگزین می‌شود
-    clone.querySelector('.pet-description').textContent = pet.description;
-    // توضیح: متن توضیحات placeholder با توضیح واقعی حیوان جایگزین می‌شود
-    clone.querySelector('.pet-photo').src = pet.photoUrl;
-    // توضیح: مسیر عکس placeholder با مسیر عکس واقعی حیوان جایگزین می‌شود
+    clone.querySelector(".pet-description").textContent = pet.description;
+    clone.querySelector(".pet-card-photo img").src = pet.photo
+    clone.querySelector(".pet-card-photo img").alt = `A ${pet.species} named ${pet.name}`
     wrapper.appendChild(clone);
     // . اضافه کردن کلون به DocumentFragment
     console.log(pet.name)
@@ -74,4 +70,11 @@ async function petsArea() {   // یک تابع ناهمزمان (async) می‌�
 // 6) صدا زدن تابع
 petsArea()
 // در نهایت تابع را فراخوانی می‌کنیم تا همه‌ی مراحل اجرا شوند
+function creatAgeText(birthYear) {
+  const currentYear = new Date().getFullYear()
+  const age = currentYear - birthYear
+  if (age == 1) return "1 years old"
+  if (age == 0) return "less than a year old"
+  return `${age} years old`
+}
 
