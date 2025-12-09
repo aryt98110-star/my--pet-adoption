@@ -49,6 +49,7 @@ async function petsArea() {   // یک تابع ناهمزمان (async) می‌�
     const clone = template.content.cloneNode(true);
     // توضیح: cloneNode(true) یک نسخه عمیق (Deep clone) از تمپلیت می‌سازد.
     // تمام عناصر داخل تمپلیت در clone کپی می‌شوند.
+    clone.querySelector(".pet-card").dataset.species = pet.species
     clone.querySelector("h3").textContent = pet.name
     clone.querySelector(".pet-description").textContent = pet.description
     clone.querySelector(".pet-age").textContent = creatAgeText(pet.birthdayYear);
@@ -88,4 +89,12 @@ function handleButtonClick(e) {
   //add active class to the specific button  that just got clicked
   e.target.classList.add("active")
   //actually filter the pets down below
+  const currentFilter = e.target.dataset.filter
+  document.querySelectorAll(".pet-card").forEach(el => {
+    if (currentFilter == el.dataset.species || currentFilter == "all") {
+      el.style.display = "grid"
+    } else {
+      el.style.display = "none"
+    }
+  })
 }
